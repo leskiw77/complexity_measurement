@@ -17,10 +17,10 @@ def run(cls, init, run, dest="", dest_par=""):
         print("Invalid input args")
         exit()
 
-    rc = runtime_calculation(fun, range(1, 1000000, 10000))
+    rc = runtime_calculation(fun, range(1, 1000000, 1000))
 
     try:
-        x, y = rc.measure_reliance()
+        x, y = rc.measure_reliance(5)
     except:
         print("Execution last too long, only %d measurements acquired" % len(rc.y))
         if len(rc.y) < 5:
@@ -49,4 +49,4 @@ def run(cls, init, run, dest="", dest_par=""):
     exit()
 
 
-run('test', '', 'square')
+run('test', '', 'linear')

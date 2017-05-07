@@ -37,6 +37,6 @@ class runtime_calculation:
                 logger.info("%d measurements made in %f " % (log_info, sum(self.y[i - log_info:i])))
 
             if time_sum >= max_time:
-                logger.error("Computations overdue time limitation, last n is %d ", self.x[i])
+                logger.error("Computations overdue time limitation, last n is %d ", i + 1)
                 raise TimeoutError("Computations overdue time limitation")
         return self.x, self.y

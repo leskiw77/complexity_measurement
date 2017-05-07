@@ -35,23 +35,26 @@ class complexity_solver(object):
         return abs(np.polyfit([fun(i) for i in x], y, 1)[1])
 
     def bestMatch(self, x, y):
-        dev_lin = self.aprox_quality(x, y, self.linear)
-        dev_log = self.aprox_quality(x, y, self.n_logn)
-        dev_cub = self.aprox_quality(x, y, self.square)
+        def get_message():
+            dev_lin = self.aprox_quality(x, y, self.linear)
+            dev_log = self.aprox_quality(x, y, self.n_logn)
+            dev_cub = self.aprox_quality(x, y, self.square)
 
-        if dev_lin < dev_log and dev_lin < dev_cub:
-            logger.info("Detected: Linear Complexity")
-            print("Linear Complexity")
-            return self.linear
+            if dev_lin < dev_log and dev_lin < dev_cub:
+                logger.info("Detected: Linear Complexity")
+                print("Linear Complexity")
+                return self.linear
 
-        if dev_log < dev_cub and dev_log < dev_lin:
-            logger.info("Detected: N*LOG(N) Complexity")
-            print("N*LOG(N) Complexity")
-            return self.n_logn
+            if dev_log < dev_cub and dev_log < dev_lin:
+                logger.info("Detected: N*LOG(N) Complexity")
+                print("N*LOG(N) Complexity")
+                return self.n_logn
 
-        logger.info("Detected: N*N Complexity")
-        print("N*N Complexity")
-        return self.square
+            logger.info("Detected: N*N Complexity")
+            print("N*N Complexity")
+            return self.square
+        return get_message()
+
 
     def print_fun(self, f):
         if f == self.square:
