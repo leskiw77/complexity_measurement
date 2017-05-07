@@ -5,26 +5,28 @@ import argparse
 from complexity_measurement.complexity_indicator import complexity_solver
 from complexity_measurement.runtime_measurement import runtime_calculation
 
-parser = argparse.ArgumentParser(prog="Big O notation", description='Estimate complexity of input program',
-                                 epilog='Thanks for using program')
-
-parser.add_argument("cls", help="class to run")
-parser.add_argument("init", help="constructor argument without whitespaces e.g. [1,2,str], bracket might be omitted")
-parser.add_argument("run", help="program to run")
-parser.add_argument('-dest', help='cleaning function')
-parser.add_argument('-dest_par', help='parameters of destructor')
-
-parser.add_argument('--version', action='version', version='%(prog)s 1.0')
-
-args = parser.parse_args()
-
 
 def __main__():
     run()
 
 
 def run():
-    rc = runtime_calculation()
+    try:
+        parser = argparse.ArgumentParser(prog="Big O notation", description='Estimate complexity of input program',
+                                         epilog='Thanks for using program')
+
+        parser.add_argument("cls", help="class to run")
+        parser.add_argument("init",
+                            help="constructor argument without whitespaces e.g. [1,2,str], bracket might be omitted")
+        parser.add_argument("run", help="program to run")
+        parser.add_argument('-dest', help='cleaning function')
+        parser.add_argument('-dest_par', help='parameters of destructor')
+
+        parser.add_argument('--version', action='version', version='%(prog)s 1.0')
+
+        args = parser.parse_args()
+    except:
+        exit()
 
     try:
         line = args.init.replace('[', '').replace(']', '').split(',')
@@ -35,6 +37,8 @@ def run():
     except:
         print("Invalid input args")
         exit()
+
+    rc = runtime_calculation(fun)
 
     try:
         x, y = rc.measure_reliance(10000, 10)
