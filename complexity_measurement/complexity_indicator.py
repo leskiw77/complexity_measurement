@@ -65,11 +65,11 @@ class complexity_solver(object):
 
     def time_aprox(self, x, y, f):
         z = np.polyfit([f(a) for a in x], y, 1)
-        print("T = %+.2f * (%s) %+.2f " % (z[0], self.print_fun(f), z[1]))
+        print("T = %+.2E * (%s) %+.2E " % (z[0], self.print_fun(f), z[1]))
 
     def complx_aprox(self, x, y, f):
         z = np.polyfit([f(a) for a in x], y, 1)
-        rootStr = ("(T %+.2f)/(%.2f)" % (z[1], z[0]))
+        rootStr = ("(T %+.2E)/(%.2E)" % (z[1], z[0]))
 
         if f == self.linear:
             print("N = " + rootStr)

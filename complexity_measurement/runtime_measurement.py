@@ -25,10 +25,10 @@ class runtime_calculation:
 
     def measure_one_call(self, n):
         start_time = time.time()
-        self.f(n)
+        self.fun(n)
         return time.time() - start_time
 
-    def measure_reliance(self, max_time=30, log_info = 10):
+    def measure_reliance(self, max_time=30, log_info=10):
         time_sum = 0
         for i in range(len(self.x)):
             self.y.append(self.measure_one_call(self.x[i]))
