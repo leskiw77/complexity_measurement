@@ -1,10 +1,9 @@
 import argparse
 
-import matplotimpolib.pyplot as plt
+#import matplotimpolib.pyplot as plt
 
 from complexity_measurement.complexity_indicator import complexity_solver
 from complexity_measurement.runtime_measurement import runtime_calculation
-
 
 parser = argparse.ArgumentParser(prog="Big O notation", description='Estimate complexity of input program',
                                  epilog='Thanks for using program')
@@ -18,6 +17,11 @@ parser.add_argument('-dest_par', help='parameters of destructor')
 parser.add_argument('--version', action='version', version='%(prog)s 1.0')
 
 args = parser.parse_args()
+
+
+def __main__():
+    run()
+
 
 def run():
     rc = runtime_calculation()
@@ -47,9 +51,8 @@ def run():
     cs = complexity_solver(x, y)
     cs.compute_res()
 
-    plt.plot(x, y, 'ro')
-    plt.show()
-
+    #plt.plot(x, y, 'ro')
+    #plt.show()
 
     if args.dest is not None:
         try:
