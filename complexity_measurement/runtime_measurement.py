@@ -1,5 +1,6 @@
 import math
 import logging
+import time
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -17,13 +18,15 @@ class TimeoutError(Exception):
 
 
 class runtime_calculation:
-    def __init__(self, x=[i for i in range(1, 100)]):
+    def __init__(self, fun, x=[i for i in range(1, 100)]):
+        self.fun = fun
         self.y = []
         self.x = x
 
     def measure_one_call(self, n):
-        #return time of one iter
-        return n*math.log(n)
+        start_time = time.time()
+        self.f(n)
+        return time.time() - start_time
 
     def measure_reliance(self, max_time=30, log_info = 10):
         time_sum = 0
