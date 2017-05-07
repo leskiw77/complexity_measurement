@@ -7,4 +7,4 @@ setup(name='complexity_measurement',
       author_email='jarema.leskiw@gmail.com',
       license='MIT',
       packages=['complexity_measurement'],
-      zip_safe=False, install_requires=['numpy', 'matplotlib'])
+      zip_safe=False, install_requires=['numpy'])
